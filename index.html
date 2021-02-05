@@ -12,11 +12,21 @@
 
     <h1>Exemplo 02</h1>
     <canvas></canvas>
+    <img width="130" height="105" src="assets/Wraith_01_Casting Spells_000.png">
     <script>
         const canvas = document.querySelector("canvas");
         const ctx = canvas.getContext("2d")
+        const wraith = document.querySelector("img")
+        wraith.addEventListener("load", carregou);
+
         ctx.fillStyle = "lightblue";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+
+
+        function carregou() {
+            ctx.drawImage(wraith, 0 , 0);
+        }
     </script>
 </body>
 
