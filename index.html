@@ -15,17 +15,48 @@
     <script>
         const canvas = document.querySelector("canvas");
         const ctx = canvas.getContext("2d")
-        const wraith = new Image();
-        wraith.src = "assets/wraith.png"
-        wraith.addEventListener("load", carregou);
 
-        ctx.fillStyle = "dark";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        const archer = new Image();
+        archer.src = "assets/spritesheet.png"
+        archer.addEventListener("load", carregou);
 
+
+        desenhaFundo();
+        let c = 1;
+        let l = 1;
 
         function carregou() {
-            ctx.drawImage(wraith, 0, 0);
+            requestAnimationFrame(passo)
         }
+
+        function desenhaFundo() {
+            ctx.fillStyle = "dark";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        let t0;
+        let dt;
+        let velocidadeAnimacao = 8
+
+
+
+        function passo(t) {
+            t0 = t0 ?? t;
+            dt = (t - t0) / 1000
+            desenhaFundo()
+
+            ctx.drawImage(archer,
+                //sx, sy, sw, sh
+                Math.floor(c) * 64, Math.floor(l) * 64, 64, 64,
+                //dx, dy, dw, dh
+                0, 0, 64, 64
+            )
+            c += velocidadeAnimacao * dt;
+            if (c > 6) c = 0;
+            requestAnimationFrame(passo)
+            t0 = t;
+        }
+
     </script>
 </body>
 
