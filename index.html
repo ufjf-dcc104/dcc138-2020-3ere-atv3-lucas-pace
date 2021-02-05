@@ -39,7 +39,7 @@
 
 
         let quadro = 0;
-        let poseAtual = "deslizar";
+        let poseAtual = "atirar";
 
         const POSES =
         {
@@ -65,7 +65,7 @@
                 //dx, dy, dw, dh
                 0, 0, 64, 64
             )
-            quadro = quadro > POSES.correr.pmax ? 0 : quadro + POSES.correr.pv * dt;
+            quadro = quadro > POSES[poseAtual].pmax ? 0 : quadro + POSES[poseAtual].pv * dt;
 
             requestAnimationFrame(passo)
             t0 = t;
